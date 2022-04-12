@@ -30,13 +30,17 @@ export class Workout {
 
 @Injectable()
 export class WorkoutService {
-  workOuts: Workout[];
-  // constructor(workouts: Workout[]) {
-  //   this.workOuts = workouts;
-  // }
+  workOuts: Workout[] = [];
 
   addWorkout(workout: Workout) {
-    return workout;
+    const newWorkout = new Workout(
+      workout.name,
+      workout.difficulty,
+      workout.time,
+      workout.type,
+    );
+    this.workOuts.push(newWorkout);
+    return this.workOuts;
   }
   listWorkouts() {
     return this.workOuts;
