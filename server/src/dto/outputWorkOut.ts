@@ -1,10 +1,10 @@
 import { workOutDifficulties } from 'src/constant/workOutDifficulties';
-import { workOutTypes } from 'src/constant/workOutTypes';
+import { workOutTypes } from 'src/constant/workOutCategory';
 
 export class OutputWorkOutDto {
   id: number;
-  categoryWorkOut: workOutTypes;
-  difficulty: workOutDifficulties;
+  categoryWorkOut: string;
+  difficulty: string;
   time: number;
   score: number;
   data: string;

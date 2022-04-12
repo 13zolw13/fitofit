@@ -1,17 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { workOutTypes } from 'src/constant/workOutTypes';
-import { workOutDifficulties } from 'src/constant/workOutDifficulties';
-
 export class Workout {
   workoutId?: number;
-  categoryWorkOut: workOutTypes;
-  difficulty: workOutDifficulties;
+  categoryWorkOut: string;
+  difficulty: string;
   time: number;
   score?: number;
   date: string;
   constructor(
-    CategoryWorkOut: workOutTypes,
-    difficulty: workOutDifficulties,
+    CategoryWorkOut: string,
+    difficulty: string,
     time: number,
     date: string,
   ) {
