@@ -4,9 +4,11 @@ import {
   Get,
   Post,
   Put,
+  Query,
   ValidationPipe,
 } from '@nestjs/common';
 import { InputWorkOutDto } from 'src/dto/inputWorkOutDto';
+import { QueryDto } from 'src/dto/queryDto';
 import { WorkoutService } from './workout.service';
 
 @Controller('workout')
@@ -18,8 +20,8 @@ export class WorkOutController {
     return 'server is working';
   }
   @Get()
-  async getWorkouts() {
-    return await this.workoutService.list();
+  async getWorkouts(@Query() queryOptions: QueryDto) {
+    return await this.workoutService.list(queryOptions);
   }
 
   @Post()

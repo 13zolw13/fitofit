@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { InputWorkOutDto } from 'src/dto/inputWorkOutDto';
 import { OutputWorkOutDto } from 'src/dto/outputWorkOut';
 import { OutputWorkOutListDto } from 'src/dto/OutputWorkOutListDto';
+import { QueryDto } from 'src/dto/queryDto';
 import { Workout, WorkoutDocument } from './schema/workout.schema';
 // export class Workout {
 //   workoutId?: number;
@@ -56,7 +57,32 @@ export class WorkoutService {
     await newWorkout.save();
     return newWorkout;
   }
-  async list(): Promise<Workout[]> {
-    return await this.Workout.find({}).exec();
+  async list(queryOptions?: QueryDto): Promise<Workout[]> {
+    if (queryOptions) {
+      const { categoryWorkOut, difficulty, date, timeSplit, sort } =
+        queryOptions;
+      const query = {};
+      if (categoryWorkOut) {
+        query['categoryWorkOut'] = categoryWorkOut;
+      }
+      if (difficulty) {
+        query['difficulty'] = difficulty;
+      }
+      if (date) {
+        query['date'] = date;
+      }
+      if (timeSplit === 'week') {
+        query['date'] = { $gte: new Date(new Date().getTime() - 604800000) };
+      }
+      if (timeSplit === 'today') {
+        query['date'] = { $gte: new Date(new Date().getTime() - 86400000) };
+      }
+      if (sort === 'asc') {
+        return await this.Workout.find(query).sort({ date: 1 });
+      }
+
+      return await this.Workout.find(query).sort({ date: -1 });
+    }
+    return await this.Workout.find({}).sort({ date: -1 }).exec();
   }
 }
