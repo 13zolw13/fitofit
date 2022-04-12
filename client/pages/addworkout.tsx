@@ -20,9 +20,8 @@ import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { workOutDifficulties } from 'data/workOutDifficulties';
 import { workOutTypes } from 'data/workOutTypes';
 import { styled } from '@mui/system';
-import { format as formatDate, formatISO } from 'date-fns'
-import { DateTimePicker, MobileDatePicker } from '@mui/x-date-pickers';
-import { ConstructionOutlined } from '@mui/icons-material';
+import { DateTimePicker } from '@mui/x-date-pickers';
+import { WorkoutApi } from 'service/WorkoutApi';
 
 const FormElementWrapper = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(2),
@@ -42,9 +41,12 @@ const AddWorkoutPage = () => {
       mode: 'onChange',
     });
 
-  const onSubmit = (data: InputWorkOutDto) => {
+  const onSubmit = async (data: InputWorkOutDto) => {
     console.log(getValues());
     console.log(data);
+    reset();
+    const result = await WorkoutApi.sendWorkout(data);
+    console.log(result);
   };
 
   return (
@@ -135,15 +137,7 @@ const AddWorkoutPage = () => {
                   field: { onChange, value },
                   fieldState: { error },
                 }) => (
-                  <FormControl
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                    }}
-                  >
                     <TextField
-                      margin={'normal'}
                       type="number"
                       label="Time"
                       value={value}
@@ -155,7 +149,6 @@ const AddWorkoutPage = () => {
                           : null
                       }
                     />
-                  </FormControl>
                 )}
               />
             </FormElementWrapper>
@@ -171,7 +164,7 @@ const AddWorkoutPage = () => {
                 }) => {
                   return (
                     <DateTimePicker
-                      label="Workout time"
+                      label="Workout date"
                       value={value}
                       onChange={onChange}
                       renderInput={(params) => <TextField {...params} />}
