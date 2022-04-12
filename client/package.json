@@ -1,0 +1,44 @@
+{
+  "name": "mail-sender",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest --watch",
+    "test:ci": "jest --ci"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@hookform/resolvers": "^2.8.8",
+    "@mui/icons-material": "^5.5.1",
+    "@mui/material": "^5.5.3",
+    "axios": "^0.26.1",
+    "babel-jest": "^27.5.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "jest": "^27.5.1",
+    "lodash": "^4.17.21",
+    "next": "12.1.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.29.0",
+    "reflect-metadata": "^0.1.13",
+    "ts-jest": "^27.1.4"
+  },
+  "devDependencies": {
+    "@types/mjml-react": "^2.0.4",
+    "@types/node": "^17.0.23",
+    "@types/react": "17.0.43",
+    "@types/react-dom": "17.0.14",
+    "eslint": "8.12.0",
+    "eslint-config-next": "12.1.4",
+    "prettier": "^2.6.1",
+    "ts-node": "^10.7.0",
+    "tslib": "^2.3.1",
+    "typescript": "4.6.3"
+  }
+}
