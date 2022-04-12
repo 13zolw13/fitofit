@@ -13,9 +13,9 @@ import { WorkoutService } from './workout.service';
 export class WorkOutController {
   constructor(private readonly workoutService: WorkoutService) {}
 
-  @Get('health')
+  @Get('healthcheck')
   async updateWorkout() {
-    return 'updateWorkout';
+    return 'server is working';
   }
   @Get()
   async getWorkouts() {

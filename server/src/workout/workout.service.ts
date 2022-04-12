@@ -3,6 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 
 import { Model } from 'mongoose';
 import { InputWorkOutDto } from 'src/dto/inputWorkOutDto';
+import { OutputWorkOutDto } from 'src/dto/outputWorkOut';
+import { OutputWorkOutListDto } from 'src/dto/OutputWorkOutListDto';
 import { Workout, WorkoutDocument } from './schema/workout.schema';
 // export class Workout {
 //   workoutId?: number;
@@ -33,8 +35,24 @@ export class WorkoutService {
     @InjectModel(Workout.name) private Workout: Model<WorkoutDocument>,
   ) {}
 
+  score(time: number, difficulty: string) {
+    switch (difficulty) {
+      case 'easy':
+        return 10 * time;
+      case 'hard':
+        return 50 * time;
+      default:
+        return time;
+    }
+  }
   async create(workout: InputWorkOutDto): Promise<Workout> {
-    const newWorkout = await this.Workout.create(workout);
+    const newWorkout = await this.Workout.create({
+      date: workout.date,
+      time: workout.time,
+      difficulty: workout.difficulty,
+      categoryWorkOut: workout.categoryWorkOut,
+      score: this.score(workout.time, workout.difficulty),
+    });
     await newWorkout.save();
     return newWorkout;
   }

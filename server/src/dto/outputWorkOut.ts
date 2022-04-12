@@ -7,5 +7,5 @@ export class OutputWorkOutDto {
   difficulty: string;
   time: number;
   score: number;
-  data: string;
+  date: string;
 }
