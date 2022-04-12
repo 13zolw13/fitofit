@@ -34,10 +34,11 @@ export class WorkoutService {
   ) {}
 
   async create(workout: InputWorkOutDto): Promise<Workout> {
-    const newWorkout = new this.Workout(workout);
-    return await newWorkout.save();
+    const newWorkout = await this.Workout.create(workout);
+    await newWorkout.save();
+    return newWorkout;
   }
   async list(): Promise<Workout[]> {
-    return await this.Workout.find().exec();
+    return await this.Workout.find({}).exec();
   }
 }

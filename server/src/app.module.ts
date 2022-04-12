@@ -6,7 +6,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Workout } from './workout/schema/workout.schema';
 import { WorkoutSchema } from './workout/schema/workout.schema';
 @Module({
-  imports: [MongooseModule.forRoot('mongodb://localhost:27017/workouts')],
+  imports: [
+    MongooseModule.forRoot('mongodb://localhost:27017/workout'),
+    WorkOutModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

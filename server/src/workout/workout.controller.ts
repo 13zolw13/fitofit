@@ -13,15 +13,19 @@ import { WorkoutService } from './workout.service';
 export class WorkOutController {
   constructor(private readonly workoutService: WorkoutService) {}
 
+  @Get('health')
+  async updateWorkout() {
+    return 'updateWorkout';
+  }
   @Get()
   async getWorkouts() {
-    return this.workoutService.list();
+    return await this.workoutService.list();
   }
 
   @Post()
   async createWorkout(
     @Body(new ValidationPipe()) inputWorkoutDto: InputWorkOutDto,
   ) {
-    return this.workoutService.create(inputWorkoutDto);
+    return await this.workoutService.create(inputWorkoutDto);
   }
 }
