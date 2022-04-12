@@ -9,6 +9,6 @@ export class InputWorkOutDto {
   @Max(300)
   @IsNumber()
   time: number;
-  @IsDate()
-  date: Date;
+  @IsString()
+  date: string;
 }
