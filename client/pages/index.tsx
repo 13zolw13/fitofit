@@ -12,7 +12,6 @@ const Home: NextPage = () => {
   React.useEffect(() => {
     const getWorkout = async () => {
       const data = await axios.get(endpoints.WORKOUTAPI);
-      console.log(data);
     }
     getWorkout()
   }, []);

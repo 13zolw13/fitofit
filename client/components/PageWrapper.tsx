@@ -10,7 +10,6 @@ type PageWrapperProps = {
 
 export const PageWrapper = ({children}: PageWrapperProps) => {
   const { pathname } = useRouter();
-  console.log(pathname);
   const pathWithoutActionButton = "/addworkout";
 
   return (
