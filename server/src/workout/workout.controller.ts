@@ -15,13 +15,13 @@ export class WorkOutController {
 
   @Get()
   async getWorkouts() {
-    return this.workoutService.listWorkouts();
+    return this.workoutService.list();
   }
 
   @Post()
   async createWorkout(
     @Body(new ValidationPipe()) inputWorkoutDto: InputWorkOutDto,
   ) {
-    return this.workoutService.addWorkout(inputWorkoutDto);
+    return this.workoutService.create(inputWorkoutDto);
   }
 }

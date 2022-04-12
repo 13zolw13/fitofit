@@ -1,41 +1,43 @@
 import { Injectable } from '@nestjs/common';
-export class Workout {
-  workoutId?: number;
-  categoryWorkOut: string;
-  difficulty: string;
-  time: number;
-  score?: number;
-  date: string;
-  constructor(
-    CategoryWorkOut: string,
-    difficulty: string,
-    time: number,
-    date: string,
-  ) {
-    this.workoutId = Math.floor(Math.random() * 1000000);
-    this.categoryWorkOut = CategoryWorkOut;
-    this.difficulty = difficulty;
-    this.time = time;
-    this.date = date;
-    this.score = 0;
-  }
-}
+import { InjectModel } from '@nestjs/mongoose';
+
+import { Model } from 'mongoose';
+import { InputWorkOutDto } from 'src/dto/inputWorkOutDto';
+import { Workout, WorkoutDocument } from './schema/workout.schema';
+// export class Workout {
+//   workoutId?: number;
+//   categoryWorkOut: string;
+//   difficulty: string;
+//   time: number;
+//   score?: number;
+//   date: string;
+//   constructor(
+//     CategoryWorkOut: string,
+//     difficulty: string,
+//     time: number,
+//     date: string,
+//   ) {
+//     this.workoutId = Math.floor(Math.random() * 1000000);
+//     this.categoryWorkOut = CategoryWorkOut;
+//     this.difficulty = difficulty;
+//     this.time = time;
+//     this.date = date;
+//     this.score = 0;
+//   }
+// }
 
 @Injectable()
 export class WorkoutService {
-  workOuts: Workout[] = [];
+  // workOuts: Workout[] = [];
+  constructor(
+    @InjectModel(Workout.name) private Workout: Model<WorkoutDocument>,
+  ) {}
 
-  addWorkout(workout: Workout) {
-    const newWorkout = new Workout(
-      workout.categoryWorkOut,
-      workout.difficulty,
-      workout.time,
-      workout.date,
-    );
-    this.workOuts.push(newWorkout);
-    return this.workOuts;
+  async create(workout: InputWorkOutDto): Promise<Workout> {
+    const newWorkout = new this.Workout(workout);
+    return await newWorkout.save();
   }
-  listWorkouts() {
-    return this.workOuts;
+  async list(): Promise<Workout[]> {
+    return await this.Workout.find().exec();
   }
 }
