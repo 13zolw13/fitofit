@@ -4,26 +4,21 @@ import { workOutDifficulties } from 'src/constant/workOutDifficulties';
 
 export class Workout {
   workoutId?: number;
-  name: string;
-
+  categoryWorkOut: workOutTypes;
   difficulty: workOutDifficulties;
-
   time: number;
-
-  type: workOutTypes;
   score?: number;
 
   constructor(
-    name: string,
+    CategoryWorkOut: workOutTypes,
     difficulty: workOutDifficulties,
     time: number,
-    type: workOutTypes,
   ) {
     this.workoutId = Math.floor(Math.random() * 1000000);
-    this.name = name;
+    this.categoryWorkOut = CategoryWorkOut;
     this.difficulty = difficulty;
     this.time = time;
-    this.type = type;
+
     this.score = 0;
   }
 }
@@ -34,10 +29,9 @@ export class WorkoutService {
 
   addWorkout(workout: Workout) {
     const newWorkout = new Workout(
-      workout.name,
+      workout.categoryWorkOut,
       workout.difficulty,
       workout.time,
-      workout.type,
     );
     this.workOuts.push(newWorkout);
     return this.workOuts;

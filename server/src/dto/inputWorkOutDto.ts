@@ -1,14 +1,14 @@
 import { workOutTypes } from 'src/constant/workOutTypes';
 import { workOutDifficulties } from 'src/constant/workOutDifficulties';
-import { IsEnum, IsNumber, IsString } from 'class-validator';
+import { IsEnum, IsNumber, Min, Max } from 'class-validator';
 
 export class InputWorkOutDto {
-  @IsString()
-  name: string;
+  @IsEnum(workOutTypes)
+  categoryWorkOut: workOutTypes;
   @IsEnum(workOutDifficulties)
   difficulty: workOutDifficulties;
+  @Min(5)
+  @Max(300)
   @IsNumber()
   time: number;
-  @IsEnum(workOutTypes)
-  type: workOutTypes;
 }
