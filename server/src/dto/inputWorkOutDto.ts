@@ -1,13 +1,4 @@
-import { workOutTypes } from 'src/constant/workOutCategory';
-import { workOutDifficulties } from 'src/constant/workOutDifficulties';
-import {
-  IsEnum,
-  IsNumber,
-  Min,
-  Max,
-  IsDateString,
-  IsString,
-} from 'class-validator';
+import { IsNumber, Min, Max, IsDateString, IsString } from 'class-validator';
 
 export class InputWorkOutDto {
   @IsString()

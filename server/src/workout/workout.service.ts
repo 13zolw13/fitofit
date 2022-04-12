@@ -3,35 +3,11 @@ import { InjectModel } from '@nestjs/mongoose';
 
 import { Model } from 'mongoose';
 import { InputWorkOutDto } from 'src/dto/inputWorkOutDto';
-import { OutputWorkOutDto } from 'src/dto/outputWorkOut';
-import { OutputWorkOutListDto } from 'src/dto/OutputWorkOutListDto';
 import { QueryDto } from 'src/dto/queryDto';
 import { Workout, WorkoutDocument } from './schema/workout.schema';
-// export class Workout {
-//   workoutId?: number;
-//   categoryWorkOut: string;
-//   difficulty: string;
-//   time: number;
-//   score?: number;
-//   date: string;
-//   constructor(
-//     CategoryWorkOut: string,
-//     difficulty: string,
-//     time: number,
-//     date: string,
-//   ) {
-//     this.workoutId = Math.floor(Math.random() * 1000000);
-//     this.categoryWorkOut = CategoryWorkOut;
-//     this.difficulty = difficulty;
-//     this.time = time;
-//     this.date = date;
-//     this.score = 0;
-//   }
-// }
 
 @Injectable()
 export class WorkoutService {
-  // workOuts: Workout[] = [];
   constructor(
     @InjectModel(Workout.name) private Workout: Model<WorkoutDocument>,
   ) {}
