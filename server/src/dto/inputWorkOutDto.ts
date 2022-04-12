@@ -1,6 +1,6 @@
 import { workOutTypes } from 'src/constant/workOutTypes';
 import { workOutDifficulties } from 'src/constant/workOutDifficulties';
-import { IsEnum, IsNumber, Min, Max } from 'class-validator';
+import { IsEnum, IsNumber, Min, Max, IsDateString } from 'class-validator';
 
 export class InputWorkOutDto {
   @IsEnum(workOutTypes)
@@ -11,4 +11,6 @@ export class InputWorkOutDto {
   @Max(300)
   @IsNumber()
   time: number;
+  @IsDateString()
+  date: string;
 }

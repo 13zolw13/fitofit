@@ -3,9 +3,9 @@ import { workOutTypes } from 'src/constant/workOutTypes';
 
 export class OutputWorkOutDto {
   id: number;
-  name: string;
+  categoryWorkOut: workOutTypes;
   difficulty: workOutDifficulties;
   time: number;
-  type: workOutTypes;
   score: number;
+  data: string;
 }
