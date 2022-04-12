@@ -1,6 +1,7 @@
-import { Box, Container, Fab } from "@mui/material";
+import { Container } from "@mui/material";
 import { FloatingActionButton } from "./FloatingButton";
-import Link from 'next/link'
+import { useRouter } from 'next/router';
+import { HeaderBar } from "./HeaderBar";
 
 type PageWrapperProps = {
   children: JSX.Element;
@@ -8,11 +9,17 @@ type PageWrapperProps = {
 
 
 export const PageWrapper = ({children}: PageWrapperProps) => {
+  const { pathname } = useRouter();
+  console.log(pathname);
+  const pathWithoutActionButton = "/addworkout";
 
   return (
-    <Container maxWidth="md" sx={{minHeight: '100vh', position: 'relative'}}>
+    <Container maxWidth="md" sx={{ minHeight: '100vh', position: 'relative' }}>
+      <HeaderBar />
       {children}
-      <FloatingActionButton href="/addworkout"/>
+      {pathname !== pathWithoutActionButton && (
+        <FloatingActionButton href="/addworkout" />
+      )}
     </Container>
-  )
+  );
 }
