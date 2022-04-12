@@ -22,7 +22,7 @@ export class UserController {
     return await this.userService.create(inputUserDto);
   }
   @Get('/:id')
-  async userDetails(@Param((id) => id) id: string) {
+  async userDetails(@Param('id') id: string) {
     return await this.userService.findOne(id);
   }
 }
