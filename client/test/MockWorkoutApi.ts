@@ -1,7 +1,6 @@
 import { OutputWorkOutListDto, InputWorkOutDto, OutputWorkOutDto } from '../dto';
 import { ServiceErrorMessage } from '../types/workout.api';
 import lodash from "lodash";
-import { v4 as uuidv4 } from 'uuid';
 import { workOutDifficulties } from '../data/workOutDifficulties';
 import { workOutTypes } from "../data/workOutTypes";
 import { formatISO } from "date-fns";
@@ -14,7 +13,7 @@ export class MockWorkoutApi {
   }
 
   static async getLastWeekWorkouts(): Promise<OutputWorkOutListDto> {
-    return this.generateRandomWorkoutList(10);
+    return MockWorkoutApi.generateRandomWorkoutList(10);
   }
 
   private static createErrorMessage(
@@ -33,7 +32,7 @@ export class MockWorkoutApi {
     return dateB - dateA;
   }
 
-  private static generateRandomWorkoutList(
+  static generateRandomWorkoutList(
     workoutsNumber: number,
   ): OutputWorkOutListDto {
     const workoutArray =
@@ -58,7 +57,7 @@ export class MockWorkoutApi {
         workOutTypes.map((category) => category.categoryName),
       )[0],
       date: formatISO(
-        new Date(2022, lodash.random(0, 4), lodash.random(1, 28), 13, 54),
+        new Date(2022, lodash.random(0, 4), lodash.random(1, 28), lodash.random(0, 12), lodash.random(0, 59)),
       ),
     });
   }

@@ -1,14 +1,17 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from '@mui/material/styles';
 
 let theme = createTheme({
   palette: {
     background: {
       default: '#F8F8F8',
     },
-  },
+    list: {
+      lightbg: '#e3f2fd',
+    },
+  }
 });
 
-theme = createTheme({
+theme = createTheme(theme, {
   typography: {
     h1: {
       fontFamily: "'Montserrat', sans-serif",

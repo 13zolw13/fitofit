@@ -16,7 +16,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { styled } from '@mui/system';
+import { styled } from '@mui/material/styles';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import { workOutDifficulties } from 'data/workOutDifficulties';
 import { workOutTypes } from 'data/workOutTypes';

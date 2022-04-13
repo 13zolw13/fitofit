@@ -18,7 +18,7 @@ export const FloatingActionButton = ({href}: FloatingActionButtonProps) => {
     >
       <Link href={href}>
         <a>
-          <Fab size="small" color="secondary" aria-label="add">
+          <Fab size="small" color="primary" aria-label="add">
             <AddIcon />
           </Fab>
         </a>
