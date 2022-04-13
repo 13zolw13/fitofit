@@ -14,7 +14,7 @@ export class WorkoutApi {
       const resp = await axios.post(endpoints.WORKOUTAPI_SEND_WORKOUT, request);
       return resp.data as OutputWorkOutListDto;
     } catch (err) {
-      return createErrorMessage(
+      return this.createErrorMessage(
         'Sth wrong during adding new workout, We dont really know but keep calm.',
       );
     }
@@ -23,5 +23,13 @@ export class WorkoutApi {
     response: OutputWorkOutListDto | ServiceErrorMessage,
   ): response is ServiceErrorMessage {
     return (response as ServiceErrorMessage).errorMessage !== undefined;
-  };
+  }
+
+  private static createErrorMessage (
+    text: string,
+    status?: number,
+  ): ServiceErrorMessage { return ({
+    errorMessage: text,
+    ...(status && { status: status }),
+  })};
 }
