@@ -12,8 +12,8 @@ type PageWrapperProps = {
 
 export const PageWrapper = ({ children }: PageWrapperProps) => {
   const { pathname } = useRouter();
-  const pathWithoutActionButton = ['/', 'auth','/addworkout'];
-  const pathWithoutHeadBar = ['/', 'auth'];
+  const pathWithoutActionButton = ['/', '/auth','/addworkout'];
+  const pathWithoutHeadBar = ['/', '/auth'];
 
   return (
     <Container maxWidth="md" sx={{ minHeight: '100vh', position: 'relative' }}>

@@ -1,12 +1,11 @@
-import { Box, Icon } from '@mui/material';
+import AuthWidget from 'components/Auth.widget';
 import * as React from 'react';
 
-const Auth = () => {
 
+
+const Auth = () => {
   return (
-    <Box>
-      Auth will be here
-    </Box>
+    <AuthWidget />
   );
 };
 

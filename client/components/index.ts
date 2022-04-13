@@ -1,4 +1,6 @@
 export * from './AddWorkout.form';
+export * from './Auth.widget';
+export * from './Centered.wrapper';
 export * from './FloatingButton';
 export * from './HeaderBar';
 export * from './Landing';
