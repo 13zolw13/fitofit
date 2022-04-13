@@ -37,6 +37,7 @@ type AddWorkoutFormProps = {
 
 export const AddWorkoutForm = ({ defaultValues }: AddWorkoutFormProps) => {
   const [backendError, setBackendError] = React.useState("");
+  const [didCorrectlySent, setDidCorrectlySent] = React.useState(false);
 
   const { handleSubmit, control, reset, formState, getValues } =
     useForm<InputWorkOutDto>({
@@ -56,6 +57,7 @@ export const AddWorkoutForm = ({ defaultValues }: AddWorkoutFormProps) => {
       setBackendError(result.errorMessage);
     } else {
       setBackendError('');
+      setDidCorrectlySent(true);
     }
   };
 
@@ -198,6 +200,7 @@ export const AddWorkoutForm = ({ defaultValues }: AddWorkoutFormProps) => {
         </Button>
       </FormControl>
       {backendError && <Alert severity="error">{backendError}</Alert>}
+      {didCorrectlySent && <Alert severity="success">Great! We have your workout in our database</Alert>}
     </>
   );
 };
