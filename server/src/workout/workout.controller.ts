@@ -1,11 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  Put,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, ValidationPipe } from '@nestjs/common';
 import { InputWorkOutDto } from 'src/dto/inputWorkOutDto';
 import { WorkoutService } from './workout.service';
 
@@ -28,10 +21,4 @@ export class WorkOutController {
       score: 10,
     });
   }
-  // @Post()
-  // async createWorkout(
-  //   @Body(new ValidationPipe()) inputWorkoutDto: InputWorkOutDto,
-  // ) {
-  //   return this.workoutService.addWorkout(inputWorkoutDto);
-  // }
 }
