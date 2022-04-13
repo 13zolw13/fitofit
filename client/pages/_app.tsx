@@ -1,6 +1,7 @@
 import '../styles/globals.css';
 import 'reflect-metadata';
 import { QueryClientProvider, QueryClient } from "react-query";
+import Head from 'next/head';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -18,6 +19,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <ThemeProvider theme={theme}>
+          <Head>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"></link>
+          </Head>
           <CssBaseline />
           <PageWrapper>
             <Component {...pageProps} />

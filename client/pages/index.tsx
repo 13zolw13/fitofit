@@ -1,5 +1,5 @@
 import {
-  Box,
+  Box, Icon,
 } from "@mui/material";
 import axios from 'axios';
 import { endpoints } from "data/endpoints";
@@ -15,7 +15,7 @@ const Home: NextPage = () => {
     getWorkout()
   }, []);
   return (
-    <Box>Start app here</Box>
+    <Box>Start app here<Icon>star</Icon></Box>
   );
 };
 
