@@ -8,17 +8,25 @@ export class WorkOutController {
 
   @Get()
   async getWorkouts() {
-    return this.workoutService.findAll();
+    try {
+      return this.workoutService.findAll();
+    } catch (error: any) {
+      return { text: 'Something went wrong', status: error.status };
+    }
   }
 
   @Post()
   async addWorkout(@Body(new ValidationPipe()) workout: InputWorkOutDto) {
-    return this.workoutService.addWorkout({
-      categoryWorkOut: workout.categoryWorkOut,
-      difficulty: workout.difficulty,
-      time: workout.time,
-      date: workout.date,
-      score: 10,
-    });
+    try {
+      return this.workoutService.addWorkout({
+        categoryWorkOut: workout.categoryWorkOut,
+        difficulty: workout.difficulty,
+        time: workout.time,
+        date: workout.date,
+        score: 10,
+      });
+    } catch (error) {
+      return { text: 'Something went wrong', status: error.status };
+    }
   }
 }
