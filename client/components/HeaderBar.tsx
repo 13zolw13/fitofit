@@ -33,7 +33,7 @@ export const HeaderBar = () => {
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             <Link href="/">
-              <a>El Fitofit</a>
+              <a>El Trackero</a>
             </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -86,7 +86,7 @@ export const HeaderBar = () => {
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
             <Link href="/">
-              <a>El Fitofit</a>
+              <a>El Trackero</a>
             </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
