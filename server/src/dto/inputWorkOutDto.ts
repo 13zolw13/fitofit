@@ -11,4 +11,5 @@ export class InputWorkOutDto {
   time: number;
   @IsDateString()
   date: string;
+  score = 10;
 }

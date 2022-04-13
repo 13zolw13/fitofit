@@ -15,13 +15,23 @@ export class WorkOutController {
 
   @Get()
   async getWorkouts() {
-    return this.workoutService.listWorkouts();
+    return this.workoutService.findAll();
   }
 
   @Post()
-  async createWorkout(
-    @Body(new ValidationPipe()) inputWorkoutDto: InputWorkOutDto,
-  ) {
-    return this.workoutService.addWorkout(inputWorkoutDto);
+  async addWorkout(@Body(new ValidationPipe()) workout: InputWorkOutDto) {
+    return this.workoutService.addWorkout({
+      categoryWorkOut: workout.categoryWorkOut,
+      difficulty: workout.difficulty,
+      time: workout.time,
+      date: workout.date,
+      score: 10,
+    });
   }
+  // @Post()
+  // async createWorkout(
+  //   @Body(new ValidationPipe()) inputWorkoutDto: InputWorkOutDto,
+  // ) {
+  //   return this.workoutService.addWorkout(inputWorkoutDto);
+  // }
 }
