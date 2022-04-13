@@ -8,17 +8,20 @@ type PageWrapperProps = {
   children: JSX.Element;
 };
 
+
+
 export const PageWrapper = ({ children }: PageWrapperProps) => {
   const { pathname } = useRouter();
-  const pathWithoutActionButton = '/addworkout';
+  const pathWithoutActionButton = ['/', 'auth','/addworkout'];
+  const pathWithoutHeadBar = ['/', 'auth'];
 
   return (
     <Container maxWidth="md" sx={{ minHeight: '100vh', position: 'relative' }}>
-      <HeaderBar />
+      {!pathWithoutHeadBar.includes(pathname) && <HeaderBar />}
       <Container maxWidth="md" sx={{ p: '1rem 0 1rem' }}>
         {children}
       </Container>
-      {pathname !== pathWithoutActionButton && (
+      {!pathWithoutActionButton.includes(pathname) && (
         <FloatingActionButton href="/addworkout" />
       )}
     </Container>

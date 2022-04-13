@@ -8,11 +8,17 @@ declare module '@mui/material/styles' {
     list: {
       lightbg: string;
     };
+    landing: {
+      bgcolor: string;
+    }
   }
 
   interface PaletteOptions extends MuiPaletteOptions {
     list?: {
-      lightbg: string
+      lightbg: string;
+    };
+    landing?: {
+      bgcolor: string;
     };
   }
 }

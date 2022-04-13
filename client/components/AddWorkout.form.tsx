@@ -21,10 +21,10 @@ import { DateTimePicker } from '@mui/x-date-pickers';
 import { workOutDifficulties } from 'data/workOutDifficulties';
 import { workOutTypes } from 'data/workOutTypes';
 import { InputWorkOutDto } from 'dto';
+import * as React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { WorkoutApi } from 'service/WorkoutApi';
 import { formatStringToIso } from 'utils';
-import * as React from 'react';
 
 const FormElementWrapper = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(2),

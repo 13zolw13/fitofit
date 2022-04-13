@@ -29,7 +29,7 @@ export const HeaderBar = () => {
           <Typography
             variant="h6"
             noWrap
-            component="div"
+            component="h2"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             <Link href="/">

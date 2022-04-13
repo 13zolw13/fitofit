@@ -8,9 +8,10 @@ import {
 } from '@mui/material';
 import { WorkoutList } from 'components';
 import * as React from 'react';
-import { MockWorkoutApi } from '../test/MockWorkoutApi';
-import { LAST_7_DAYS_WORKOUT_QUERY } from '../queryKeys';
 import { useQuery } from 'react-query';
+
+import { LAST_7_DAYS_WORKOUT_QUERY } from '../queryKeys';
+import { MockWorkoutApi } from '../test/MockWorkoutApi';
 
 type LogListNames = 'week' | 'month' | 'quarter';
 

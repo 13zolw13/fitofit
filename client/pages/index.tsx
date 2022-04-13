@@ -1,21 +1,14 @@
 import {
   Box, Icon,
 } from "@mui/material";
-import axios from 'axios';
-import { endpoints } from "data/endpoints";
+import Landing from "components/Landing";
 import type { NextPage } from "next";
 import * as React from 'react';
 
-
 const Home: NextPage = () => {
-  React.useEffect(() => {
-    const getWorkout = async () => {
-      const data = await axios.get(endpoints.WORKOUTAPI);
-    }
-    getWorkout()
-  }, []);
+
   return (
-    <Box>Start app here<Icon>star</Icon></Box>
+    <Landing />
   );
 };
 

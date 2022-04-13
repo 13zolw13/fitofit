@@ -1,16 +1,16 @@
 import '../styles/globals.css';
 import 'reflect-metadata';
-import { QueryClientProvider, QueryClient } from "react-query";
-import Head from 'next/head';
 
+import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { PageWrapper } from 'components';
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
+import { QueryClient,QueryClientProvider } from "react-query";
 
 import { theme } from '../theme/defaultTheme';
-import { CssBaseline } from '@mui/material';
 
 const queryClient = new QueryClient();
 

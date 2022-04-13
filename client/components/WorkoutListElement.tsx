@@ -1,4 +1,5 @@
 import { Box, Grid, Stack } from '@mui/material';
+
 import { OutputWorkOutDto } from '../dto/outputWorkOut';
 import { getFormattedDateComponents } from '../utils';
 
