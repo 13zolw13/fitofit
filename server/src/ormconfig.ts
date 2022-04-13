@@ -9,9 +9,12 @@ export const ormConfig: PostgresConnectionOptions = {
   username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
-  synchronize: true,
+  synchronize: false,
   entities: [Workout],
-  migrations: ['build/src/db/migrations*.js'],
+  schema: 'public',
+  migrationsRun: true,
+
+  migrations: ['/src/db/migrations*.ts'],
   cli: {
     migrationsDir: 'src/db/migrations',
   },
