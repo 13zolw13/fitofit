@@ -1,27 +1,31 @@
+import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import {
   Box,
+  Button,
   Container,
   FormControl,
-  FormHelperText,
-  InputLabel,
-  Radio,
-  TextField,
-  Select,
-  MenuItem,
-  Button,
-  FormLabel,
-  RadioGroup,
   FormControlLabel,
+  FormHelperText,
+  FormLabel,
   Grid,
+  InputLabel,
+  MenuItem,
+  Radio,
+  RadioGroup,
+  Select,
+  TextField,
+  Typography
 } from '@mui/material';
-import { Controller, useForm } from 'react-hook-form';
-import { InputWorkOutDto } from '../dto';
-import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { workOutDifficulties } from 'data/workOutDifficulties';
-import { workOutTypes } from 'data/workOutTypes';
 import { styled } from '@mui/system';
 import { DateTimePicker } from '@mui/x-date-pickers';
+import { workOutDifficulties } from 'data/workOutDifficulties';
+import { workOutTypes } from 'data/workOutTypes';
+import { formatISO } from 'date-fns'
+import { Controller, useForm } from 'react-hook-form';
 import { WorkoutApi } from 'service/WorkoutApi';
+
+import { InputWorkOutDto } from '../dto';
+import { formatStringToIso } from '../utils';
 
 const FormElementWrapper = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(2),
@@ -36,10 +40,11 @@ const AddWorkoutPage = () => {
         categoryWorkOut: 'yoga',
         difficulty: 'easy',
         time: 5,
-        date: new Date(),
+        date: formatStringToIso(new Date().toString()),
       },
       mode: 'onChange',
     });
+  console.log(formState.errors);
 
   const onSubmit = async (data: InputWorkOutDto) => {
     console.log(getValues());
@@ -50,7 +55,8 @@ const AddWorkoutPage = () => {
   };
 
   return (
-    <Container maxWidth="md">
+    <>
+    <Typography variant="h2">Add new workout</Typography>
       <FormControl
         component="form"
         onSubmit={handleSubmit(onSubmit)}
@@ -137,18 +143,18 @@ const AddWorkoutPage = () => {
                   field: { onChange, value },
                   fieldState: { error },
                 }) => (
-                    <TextField
-                      type="number"
-                      label="Time"
-                      value={value}
-                      onChange={(e) => onChange(+e.target.value)}
-                      error={!!formState.errors.time}
-                      helperText={
-                        formState.errors.time
-                          ? formState.errors.time.message
-                          : null
-                      }
-                    />
+                  <TextField
+                    type="number"
+                    label="Time"
+                    value={value}
+                    onChange={(e) => onChange(+e.target.value)}
+                    error={!!formState.errors.time}
+                    helperText={
+                      formState.errors.time
+                        ? formState.errors.time.message
+                        : null
+                    }
+                  />
                 )}
               />
             </FormElementWrapper>
@@ -166,7 +172,12 @@ const AddWorkoutPage = () => {
                     <DateTimePicker
                       label="Workout date"
                       value={value}
-                      onChange={onChange}
+                      onChange={(e) =>{
+                        if (e) {
+                          return onChange(formatStringToIso(e));
+                        }
+                      }
+                      }
                       renderInput={(params) => <TextField {...params} />}
                     />
                   );
@@ -179,7 +190,7 @@ const AddWorkoutPage = () => {
           Submit
         </Button>
       </FormControl>
-    </Container>
+    </>
   );
 };
 

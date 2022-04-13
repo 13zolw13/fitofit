@@ -1,11 +1,10 @@
-import * as React from 'react';
 import {
   Box,
 } from "@mui/material";
-
-import type { NextPage } from "next";
 import axios from 'axios';
 import { endpoints } from "data/endpoints";
+import type { NextPage } from "next";
+import * as React from 'react';
 
 
 const Home: NextPage = () => {

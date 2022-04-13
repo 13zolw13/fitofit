@@ -1,8 +1,9 @@
-import { AppBar, Toolbar, Typography, Box, IconButton, Menu, MenuItem, Button, Tooltip, Avatar, Container } from "@mui/material";
-import * as React from 'react';
-import MenuIcon from '@mui/icons-material/Menu';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Box, Button, Container,IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import Link from 'next/link';
+import * as React from 'react';
+
 import { menuLinks } from '../data/menuLinks'
 
 const mockedUser = 'Potato';

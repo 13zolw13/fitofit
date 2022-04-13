@@ -1,4 +1,4 @@
-import { IsNumber, Min, Max, IsDate, IsString } from 'class-validator';
+import {IsDateString, IsNumber, IsString,Max, Min } from 'class-validator';
 
 export class InputWorkOutDto {
   @IsString()
@@ -9,6 +9,6 @@ export class InputWorkOutDto {
   @Max(300)
   @IsNumber()
   time: number;
-  @IsDate()
-  date: Date;
+  @IsDateString()
+  date: string;
 }
