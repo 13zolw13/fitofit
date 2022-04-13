@@ -1,13 +1,30 @@
-import { classValidatorResolver } from "@hookform/resolvers/class-validator";
-import { Box, Button,FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, InputLabel, MenuItem, Radio, RadioGroup, Select, TextField, Typography } from "@mui/material";
+import { classValidatorResolver } from '@hookform/resolvers/class-validator';
+import {
+  Alert,
+  Box,
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  FormLabel,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Radio,
+  RadioGroup,
+  Select,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { styled } from '@mui/system';
-import { DateTimePicker } from "@mui/x-date-pickers";
-import { workOutDifficulties } from "data/workOutDifficulties";
-import { workOutTypes } from "data/workOutTypes";
-import { InputWorkOutDto } from "dto";
-import { Controller,useForm } from "react-hook-form";
-import { WorkoutApi } from "service/WorkoutApi";
-import { formatStringToIso } from "utils";
+import { DateTimePicker } from '@mui/x-date-pickers';
+import { workOutDifficulties } from 'data/workOutDifficulties';
+import { workOutTypes } from 'data/workOutTypes';
+import { InputWorkOutDto } from 'dto';
+import { Controller, useForm } from 'react-hook-form';
+import { WorkoutApi } from 'service/WorkoutApi';
+import { formatStringToIso } from 'utils';
+import * as React from 'react';
 
 const FormElementWrapper = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(2),
@@ -16,9 +33,11 @@ const FormElementWrapper = styled(Box)(({ theme }) => ({
 
 type AddWorkoutFormProps = {
   defaultValues: InputWorkOutDto;
-}
+};
 
-export const AddWorkoutForm = ({defaultValues}: AddWorkoutFormProps) => {
+export const AddWorkoutForm = ({ defaultValues }: AddWorkoutFormProps) => {
+  const [backendError, setBackendError] = React.useState("");
+
   const { handleSubmit, control, reset, formState, getValues } =
     useForm<InputWorkOutDto>({
       resolver: classValidatorResolver(InputWorkOutDto),
@@ -33,6 +52,11 @@ export const AddWorkoutForm = ({defaultValues}: AddWorkoutFormProps) => {
     reset();
     const result = await WorkoutApi.sendWorkout(data);
     console.log(result);
+    if (WorkoutApi.isResponseError(result)) {
+      setBackendError(result.errorMessage);
+    } else {
+      setBackendError('');
+    }
   };
 
   return (
@@ -42,6 +66,7 @@ export const AddWorkoutForm = ({defaultValues}: AddWorkoutFormProps) => {
         onSubmit={handleSubmit(onSubmit)}
         sx={{ margin: '2rem auto' }}
         fullWidth
+        onFocus={() => setBackendError('')}
       >
         <FormElementWrapper>
           <Controller
@@ -162,6 +187,9 @@ export const AddWorkoutForm = ({defaultValues}: AddWorkoutFormProps) => {
                   );
                 }}
               />
+              {!!formState.errors.date && (
+                <FormHelperText>{formState.errors.date.message}</FormHelperText>
+              )}
             </FormElementWrapper>
           </Grid>
         </Grid>
@@ -169,8 +197,7 @@ export const AddWorkoutForm = ({defaultValues}: AddWorkoutFormProps) => {
           Submit
         </Button>
       </FormControl>
+      {backendError && <Alert severity="error">{backendError}</Alert>}
     </>
   );
-
-
-}
+};
