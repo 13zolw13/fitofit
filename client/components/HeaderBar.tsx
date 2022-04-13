@@ -12,15 +12,9 @@ export const HeaderBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null,
-  );
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
@@ -74,7 +68,10 @@ export const HeaderBar = () => {
               {menuLinks.map((link) => (
                 <Link href={link.href} key={link.id}>
                   <a>
-                    <MenuItem key={link.id}>
+                    <MenuItem
+                      key={link.id}
+                      onClick={handleCloseNavMenu}
+                    >
                       <Typography textAlign="center">{link.title}</Typography>
                     </MenuItem>
                   </a>
