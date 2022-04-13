@@ -1,35 +1,11 @@
-version: "3"
+version: "3.7"
 services:
-  postgres:
+  dbWorkout:
     container_name: postgres
     image: postgres:latest
     ports:
     - "5432:5432"
     volumes:
-    - ./docker/postgres:/data/postgres
+    - ./data:/var/lib/postgresql/workout
     env_file:
-    - .env.local
-    # networks:
-    #   postgres:
-    #     ipv4_address: 127.0.0.1
- 
-#   pgadmin:
-#     links:
-#     - postgres:postgres
-#     container_name: pgadmin
-#     image: dpage/pgadmin4
-#     ports:
-#     - "8080:8080"
-#     volumes:
-#     - ./docker/pgadmin:/root/.pgadmin
-#     env_file:
-#     - .env.local
-#     networks:
-#       postgres:
-#         ipv4_address: 127.0.0.1
- 
-# networks:
-#   postgres:
-#     ipam:
-#       config:
-#         - subnet: 127.0.0.1/16
+      - .env

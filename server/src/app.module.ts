@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -12,7 +12,14 @@ import { WorkOutModule } from './workout/workout.module';
       isGlobal: true,
       expandVariables: true,
     }),
-    TypeOrmModule.forRoot(ormConfig),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => {
+        const env = configService.get<string>('NODE_ENV');
+        console.log(env);
+        return ormConfig(env === 'test');
+      },
+    }),
     WorkOutModule,
   ],
   controllers: [AppController],
