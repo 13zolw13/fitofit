@@ -20,8 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <ThemeProvider theme={theme}>
           <Head>
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"></link>
+            <title>El Trackero</title>
           </Head>
           <CssBaseline />
           <PageWrapper>

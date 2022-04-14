@@ -23,11 +23,16 @@ let theme = createTheme({
       dark: '#1565c0',
       contrastText: '#fff',
     },
+    mainColor: {
+      lightBorder: '#bdcfff',
+      lightBg: '#e3f2fd',
+    },
   },
 });
 
 theme = createTheme(theme, {
   typography: {
+    fontFamily: "'Montserrat', 'Roboto', sans-serif",
     h1: {
       fontFamily: "'Montserrat', sans-serif",
       fontWeight: 700,
@@ -44,6 +49,18 @@ theme = createTheme(theme, {
       fontWeight: 500,
       fontSize: '1.35rem',
       color: theme.palette.primary.main,
+    },
+    h4: {
+      fontFamily: "'Montserrat', sans-serif",
+      fontWeight: 500,
+      fontSize: '1.15rem',
+      textTransform: 'uppercase',
+      color: theme.palette.primary.main,
+    },
+    body1: {
+      fontFamily: "'Montserrat', sans-serif",
+      fontWeight: 300,
+      fontSize: '1rem',
     },
     body2: {
       fontFamily: "'Montserrat', sans-serif",

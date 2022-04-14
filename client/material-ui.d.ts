@@ -10,7 +10,11 @@ declare module '@mui/material/styles' {
     };
     landing: {
       bgcolor: string;
-    }
+    };
+    mainColor: {
+      lightBorder: string;
+      lightBg: string;
+    };
   }
 
   interface PaletteOptions extends MuiPaletteOptions {
@@ -19,6 +23,10 @@ declare module '@mui/material/styles' {
     };
     landing?: {
       bgcolor: string;
+    };
+    mainColor?: {
+      lightBorder: string;
+      lightBg: string;
     };
   }
 }
