@@ -23,7 +23,7 @@ export const HeaderBar = () => {
 
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{backgroundColor: (theme) => theme.palette.primary.dark}}>
       <Container maxWidth="md">
         <Toolbar disableGutters>
           <Typography

@@ -9,7 +9,7 @@ import {
 import * as React from 'react';
 import { useQuery } from 'react-query';
 
-import { WorkoutListWidget } from '../components';
+import { PageTitle, WorkoutListWidget } from '../components';
 import { LAST_7_DAYS_WORKOUT_QUERY } from '../queryKeys';
 import { MockWorkoutApi } from '../test/MockWorkoutApi';
 
@@ -33,7 +33,7 @@ const LogPage = () => {
 
   return (
     <>
-      <Typography variant="h2">Workout logs</Typography>
+      <PageTitle text="Workout logs" />
       <ToggleButtonGroup
         size="small"
         color="primary"

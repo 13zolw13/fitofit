@@ -53,7 +53,7 @@ theme = createTheme(theme, {
     h4: {
       fontFamily: "'Montserrat', sans-serif",
       fontWeight: 500,
-      fontSize: '1.15rem',
+      fontSize: '1.25rem',
       textTransform: 'uppercase',
       color: theme.palette.primary.main,
     },

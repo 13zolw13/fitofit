@@ -5,6 +5,7 @@ export * from './FloatingButton';
 export * from './HeaderBar';
 export * from './Landing';
 export * from './Loader';
+export * from './PageTitle';
 export * from './PageWrapper';
 export * from './ShortSummaryWidget';
 export * from './WeekMonthSummary.widget';
