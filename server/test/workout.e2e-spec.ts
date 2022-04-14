@@ -31,7 +31,7 @@ describe('Workout', () => {
   });
 
   beforeEach(() => {
-    new DatabaseCleaner().cleanup();
+    // new DatabaseCleaner().cleanup();
   });
   afterAll(async () => {
     await app.close();

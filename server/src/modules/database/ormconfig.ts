@@ -12,10 +12,10 @@ export const ormConfigurations = (
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: isTest ? process.env.POSTGRES_TEST : process.env.POSTGRES_DB,
-    synchronize: false,
+    synchronize: true,
     name: 'test',
     schema: 'public',
-    // migrationsRun: true,
+    migrationsRun: false,
     // autoLoadEntities: true,
     entities: [isTest ? './src/**/*.entity.ts' : './dist/**/*.entity.js'], // tests run on TS directly
     migrations: ['./packages/backend/src/**/migrations/*.ts'],
