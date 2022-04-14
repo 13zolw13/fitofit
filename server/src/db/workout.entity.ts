@@ -5,7 +5,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class Workout {
   @ApiProperty()
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id: number;
   @ApiProperty()
   @Column()
   categoryWorkOut: string;

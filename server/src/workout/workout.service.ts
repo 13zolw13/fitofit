@@ -5,7 +5,6 @@ import { InputWorkOutDto } from '../dto/inputWorkOutDto';
 import { Repository } from 'typeorm/repository/Repository';
 import { Between } from 'typeorm';
 import { returnTodayMax, returnTodayMin } from 'utilities/returnLimDay';
-import { query } from 'express';
 import { OutputWorkOutListDto } from 'src/dto/OutputWorkOutListDto';
 import { returnMapping } from '../../utilities/returnMapping';
 
@@ -40,7 +39,7 @@ export class WorkoutService {
   async findTodayWorkouts(): Promise<OutputWorkOutListDto> {
     const convertDateToISoMin = returnTodayMin();
     const convertDateToISoMax = returnTodayMax();
-    console.log(convertDateToISoMax);
+
     const data = await this.workoutRepository.find({
       date: Between(convertDateToISoMin, convertDateToISoMax),
     });
