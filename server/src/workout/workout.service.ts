@@ -23,4 +23,8 @@ export class WorkoutService {
       score: 10,
     });
   }
+
+  findTodayWorkouts(thisDayFormat: string) {
+    return this.workoutRepository.find({ where: { date: thisDayFormat } });
+  }
 }

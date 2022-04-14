@@ -15,6 +15,18 @@ export class WorkOutController {
     }
   }
 
+  @Get('/today')
+  async getTodayWorkouts() {
+    try {
+      console.log('getTodayWorkouts');
+      const thisDayFormat = new Date().toISOString().slice(0, 10);
+      console.log(thisDayFormat);
+      return this.workoutService.findTodayWorkouts(thisDayFormat);
+    } catch (error: any) {
+      return { text: 'Something went wrong', status: error.status };
+    }
+  }
+
   @Post()
   async addWorkout(@Body(new ValidationPipe()) workout: InputWorkOutDto) {
     try {
