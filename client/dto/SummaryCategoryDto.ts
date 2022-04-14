@@ -1,5 +1,5 @@
 export class SummaryCategoryDto {
-  categoryName: string;
+  categoryId: string;
   sumCategoryTime: number;
   sumCategoryNumber: number;
 }
