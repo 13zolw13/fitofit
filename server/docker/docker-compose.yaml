@@ -8,4 +8,4 @@ services:
     volumes:
     - ./data:/var/lib/postgresql/workout
     env_file:
-      - .env
+      - .env.local
