@@ -1,7 +1,8 @@
 import { INestApplication, ModuleMetadata } from '@nestjs/common';
 import { Test, TestingModule, TestingModuleBuilder } from '@nestjs/testing';
-import { AppModule } from '../src/app.module';
+import { AppModule } from '../src/modules/app/app.module';
 import * as request from 'supertest';
+import { DatabaseCleaner } from '../utils/cleaner';
 
 export const createTestingModule: typeof Test.createTestingModule = (
   metadata: ModuleMetadata,
@@ -29,6 +30,9 @@ describe('Workout', () => {
     await app.init();
   });
 
+  beforeEach(() => {
+    new DatabaseCleaner().cleanup();
+  });
   afterAll(async () => {
     await app.close();
   });

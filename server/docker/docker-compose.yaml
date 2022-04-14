@@ -9,3 +9,6 @@ services:
     - ./data:/var/lib/postgresql/workout
     env_file:
       - .env.local
+# psql -h public-ip-server -p 5432 -U postgres
+# CREATE DATABASE workout;
+

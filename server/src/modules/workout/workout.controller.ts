@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, ValidationPipe } from '@nestjs/common';
-import { InputWorkOutDto } from '../dto/inputWorkOutDto';
+import { InputWorkOutDto } from '../../dto/inputWorkOutDto';
 import { WorkoutService } from './workout.service';
 
 @Controller('workout')
