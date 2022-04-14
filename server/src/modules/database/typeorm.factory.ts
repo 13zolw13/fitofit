@@ -7,7 +7,7 @@ export const typeOrmConnectionOptionsFactory = (
   configService: ConfigService,
 ): TypeOrmModuleOptions => {
   const nodeEnv = configService.get('NODE_ENV');
-  const databaseUrl = configService.get('DATABASE_URL') as string;
+  const databaseUrl = configService.get('POSTGRES_HOST') as string;
 
   const ormConfigName = 'default';
   let ormConfig = ormConfigurations(false);
@@ -23,5 +23,9 @@ export const typeOrmConnectionOptionsFactory = (
     );
   }
 
-  return { ...ormConfig, url: databaseUrl } as PostgresConnectionOptions;
+  return {
+    ...ormConfig,
+    url: databaseUrl,
+    name: nodeEnv,
+  } as PostgresConnectionOptions;
 };

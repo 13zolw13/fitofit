@@ -30,9 +30,10 @@ describe('Workout', () => {
     await app.init();
   });
 
-  beforeEach(() => {
-    // new DatabaseCleaner().cleanup();
+  beforeEach(async () => {
+    await new DatabaseCleaner().cleanup();
   });
+
   afterAll(async () => {
     await app.close();
   });

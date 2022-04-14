@@ -1,28 +1,27 @@
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import { Workout } from '../workout/workout.entity';
-import 'dotenv/config';
+// import 'dotenv/config';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-export const ormConfigurations = (
-  isTest: boolean,
-): PostgresConnectionOptions => {
+export const ormConfigurations = (isTest: boolean): TypeOrmModuleOptions => {
   return {
     type: 'postgres',
     host: 'localhost',
     port: 5432,
-    username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: isTest ? process.env.POSTGRES_TEST : process.env.POSTGRES_DB,
-    synchronize: true,
-    name: 'test',
+    username: 'postgres',
+    password: 'password',
+    database: 'workout_test',
+    synchronize: false,
+    // name: 'test',
     schema: 'public',
     migrationsRun: false,
-    // autoLoadEntities: true,
-    entities: [isTest ? './src/**/*.entity.ts' : './dist/**/*.entity.js'], // tests run on TS directly
-    migrations: ['./packages/backend/src/**/migrations/*.ts'],
+    autoLoadEntities: true,
+    entities: [isTest ? './src/**/*.entity.ts' : Workout], // tests run on TS directly
+    migrations: ['./src/**/migrations/*.ts'],
     migrationsTableName: 'migrations',
 
     cli: {
-      migrationsDir: './src/migrations',
+      migrationsDir: isTest ? './src/migrations' : './dist/migration',
     },
   };
 };
