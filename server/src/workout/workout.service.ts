@@ -22,12 +22,16 @@ export class WorkoutService {
     return this.workoutRepository.find();
   }
   addWorkout(workout: InputWorkOutDto): Promise<Workout> {
+    const score =
+      10 *
+      (workout.difficulty.length + workout.categoryWorkOut.length) *
+      workout.time;
     return this.workoutRepository.save({
       categoryWorkOut: workout.categoryWorkOut,
       difficulty: workout.difficulty,
       time: workout.time,
       date: workout.date,
-      score: 10,
+      score: score,
     });
   }
 
