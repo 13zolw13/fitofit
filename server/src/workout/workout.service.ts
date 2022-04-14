@@ -7,6 +7,7 @@ import { Between } from 'typeorm';
 import { returnTodayMax, returnTodayMin } from 'utilities/returnLimDay';
 import { query } from 'express';
 import { OutputWorkOutListDto } from 'src/dto/OutputWorkOutListDto';
+import { returnMapping } from '../../utilities/returnMapping';
 
 @Injectable()
 export class WorkoutService {
@@ -45,19 +46,4 @@ export class WorkoutService {
     });
     return returnMapping(data);
   }
-}
-
-function returnMapping(data: Workout[]): OutputWorkOutListDto {
-  const Mapping = new OutputWorkOutListDto();
-  data.forEach((element) => {
-    Mapping.items.push({
-      id: Number(element.id),
-      categoryWorkOut: element.categoryWorkOut,
-      difficulty: element.difficulty,
-      time: element.time,
-      score: element.score,
-      date: element.date,
-    });
-  });
-  return Mapping;
 }
