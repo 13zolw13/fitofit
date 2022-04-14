@@ -1,9 +1,10 @@
-import { OutputWorkOutListDto, InputWorkOutDto, OutputWorkOutDto } from '../dto';
-import { ServiceErrorMessage } from '../types/workout.api';
+import { formatISO } from "date-fns";
 import lodash from "lodash";
+
 import { workOutDifficulties } from '../data/workOutDifficulties';
 import { workOutTypes } from "../data/workOutTypes";
-import { formatISO } from "date-fns";
+import { OutputWorkOutDto,OutputWorkOutListDto } from '../dto';
+import { ServiceErrorMessage } from '../types/workout.api';
 
 export class MockWorkoutApi {
   static isResponseError(
@@ -14,6 +15,10 @@ export class MockWorkoutApi {
 
   static async getLastWeekWorkouts(): Promise<OutputWorkOutListDto> {
     return MockWorkoutApi.generateRandomWorkoutList(10);
+  }
+
+  static async getTodayWorkouts(): Promise<OutputWorkOutListDto> {
+    return MockWorkoutApi.generateTodayWorkouts();
   }
 
   private static createErrorMessage(
@@ -30,6 +35,12 @@ export class MockWorkoutApi {
     const dateA = new Date(a.date).getTime();
     const dateB = new Date(b.date).getTime();
     return dateB - dateA;
+  }
+
+  private static generateTodayWorkouts(): OutputWorkOutListDto {
+    const workouts3 = this.generateRandomWorkoutList(3);
+    const noWorkout = this.generateRandomWorkoutList(0);
+    return lodash.shuffle([workouts3, noWorkout])[0];
   }
 
   static generateRandomWorkoutList(

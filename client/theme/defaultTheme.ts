@@ -17,6 +17,12 @@ let theme = createTheme({
       dark: '#ff4649',
       contrastText: '#fff',
     },
+    primary: {
+      main: '#406CE1',
+      light: '#e3f2fd',
+      dark: '#1565c0',
+      contrastText: '#fff',
+    },
   },
 });
 
@@ -31,6 +37,12 @@ theme = createTheme(theme, {
       fontFamily: "'Montserrat', sans-serif",
       fontWeight: 500,
       fontSize: '1.75rem',
+      color: theme.palette.primary.main,
+    },
+    h3: {
+      fontFamily: "'Montserrat', sans-serif",
+      fontWeight: 500,
+      fontSize: '1.35rem',
       color: theme.palette.primary.main,
     },
     body2: {

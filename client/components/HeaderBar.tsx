@@ -32,7 +32,7 @@ export const HeaderBar = () => {
             component="h2"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            <Link href="/">
+            <Link href="/dashboard">
               <a>El Trackero</a>
             </Link>
           </Typography>
@@ -85,7 +85,7 @@ export const HeaderBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            <Link href="/">
+            <Link href="/dashboard">
               <a>El Trackero</a>
             </Link>
           </Typography>

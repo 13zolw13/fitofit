@@ -7,7 +7,7 @@ type WorkoutListProps = {
   workoutList: OutputWorkOutListDto;
 }
 
-export const WorkoutList = ({workoutList}: WorkoutListProps) => {
+export const WorkoutListWidget = ({workoutList}: WorkoutListProps) => {
   const workouts = workoutList.items;
   return (
     <List

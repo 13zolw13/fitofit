@@ -19,6 +19,7 @@ export class WorkoutApi {
       );
     }
   }
+
   static isResponseError(
     response: OutputWorkOutListDto | ServiceErrorMessage,
   ): response is ServiceErrorMessage {

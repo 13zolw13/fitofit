@@ -6,10 +6,10 @@ import {
   ToggleButtonGroup,
   Typography,
 } from '@mui/material';
-import { WorkoutList } from 'components';
 import * as React from 'react';
 import { useQuery } from 'react-query';
 
+import { WorkoutListWidget } from '../components';
 import { LAST_7_DAYS_WORKOUT_QUERY } from '../queryKeys';
 import { MockWorkoutApi } from '../test/MockWorkoutApi';
 
@@ -54,7 +54,9 @@ const LogPage = () => {
         </Alert>
       )}
       {!isLoading && data && data.items.length !== 0 && (
-        <WorkoutList workoutList={data} />
+        <>
+          <WorkoutListWidget workoutList={data} />
+        </>
       )}
     </>
   );
