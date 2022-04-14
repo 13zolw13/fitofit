@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Post, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Query,
+  ValidationPipe,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { InputWorkOutDto } from '../dto/inputWorkOutDto';
 import { WorkoutService } from './workout.service';
@@ -27,6 +34,7 @@ export class WorkOutController {
       return { text: 'Something went wrong', status: error.status };
     }
   }
+
   @ApiOperation({ summary: 'Add new workout' })
   @ApiResponse({ status: 201, description: 'Successfully added workout' })
   @ApiBody({ type: InputWorkOutDto })

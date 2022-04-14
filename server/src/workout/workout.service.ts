@@ -5,9 +5,15 @@ import { InputWorkOutDto } from '../dto/inputWorkOutDto';
 import { Repository } from 'typeorm/repository/Repository';
 import { Between } from 'typeorm';
 import { returnTodayMax, returnTodayMin } from 'utilities/returnLimDay';
+import { query } from 'express';
+import { OutputWorkOutListDto } from 'src/dto/OutputWorkOutListDto';
 
 @Injectable()
 export class WorkoutService {
+  findLastWorkouts(Query: string) {
+    if (Query === '7days') {
+    }
+  }
   constructor(
     @InjectRepository(Workout)
     private readonly workoutRepository: Repository<Workout>,
@@ -30,12 +36,28 @@ export class WorkoutService {
     });
   }
 
-  findTodayWorkouts(): Promise<Workout[]> {
+  async findTodayWorkouts(): Promise<OutputWorkOutListDto> {
     const convertDateToISoMin = returnTodayMin();
     const convertDateToISoMax = returnTodayMax();
     console.log(convertDateToISoMax);
-    return this.workoutRepository.find({
+    const data = await this.workoutRepository.find({
       date: Between(convertDateToISoMin, convertDateToISoMax),
     });
+    return returnMapping(data);
   }
+}
+
+function returnMapping(data: Workout[]): OutputWorkOutListDto {
+  const Mapping = new OutputWorkOutListDto();
+  data.forEach((element) => {
+    Mapping.items.push({
+      id: Number(element.id),
+      categoryWorkOut: element.categoryWorkOut,
+      difficulty: element.difficulty,
+      time: element.time,
+      score: element.score,
+      date: element.date,
+    });
+  });
+  return Mapping;
 }
