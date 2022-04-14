@@ -3,8 +3,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ormConfig } from '../../ormconfig';
 import { WorkOutModule } from '../workout/workout.module';
+import { DatabaseModule } from '../database/database.module';
 
 @Module({
   imports: [
@@ -12,14 +12,7 @@ import { WorkOutModule } from '../workout/workout.module';
       isGlobal: true,
       expandVariables: true,
     }),
-    TypeOrmModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => {
-        const env = configService.get<string>('NODE_ENV');
-
-        return ormConfig(env === 'test');
-      },
-    }),
+    DatabaseModule,
     WorkOutModule,
   ],
   controllers: [AppController],
