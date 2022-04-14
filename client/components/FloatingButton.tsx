@@ -11,14 +11,14 @@ export const FloatingActionButton = ({href}: FloatingActionButtonProps) => {
     <Box
       sx={{
         '& > :not(style)': { m: 1 },
-        position: 'absolute',
+        position: 'fixed',
         right: '1rem',
         bottom: '1rem',
       }}
     >
       <Link href={href}>
         <a>
-          <Fab size="small" color="primary" aria-label="add">
+          <Fab size="small" color="error" aria-label="add">
             <AddIcon />
           </Fab>
         </a>

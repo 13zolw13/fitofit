@@ -1,0 +1,1 @@
+export { ShortSummaryWidget } from "./ShortSummary.widget";

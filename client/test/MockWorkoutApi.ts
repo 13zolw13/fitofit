@@ -3,7 +3,7 @@ import lodash from "lodash";
 
 import { workOutDifficulties } from '../data/workOutDifficulties';
 import { workOutTypes } from "../data/workOutTypes";
-import { OutputWorkOutDto,OutputWorkOutListDto } from '../dto';
+import { CategoryDto, CategoryListDto,InputWorkOutDto, OutputWorkOutDto,OutputWorkOutListDto, SummaryCategoryDto, SummaryWorkoutDto } from '../dto';
 import { ServiceErrorMessage } from '../types/workout.api';
 
 export class MockWorkoutApi {
@@ -21,6 +21,18 @@ export class MockWorkoutApi {
     return MockWorkoutApi.generateTodayWorkouts();
   }
 
+  static async getLastWeekWorkoutSummary(): Promise<SummaryWorkoutDto> {
+    return MockWorkoutApi.generateSummaryWorkout(7);
+  }
+
+  static async getLastMonthWorkoutSummary(): Promise<SummaryWorkoutDto> {
+    return MockWorkoutApi.generateSummaryWorkout(30);
+  }
+
+  static async getCategories(): Promise<CategoryListDto> {
+    return MockWorkoutApi.generateCategories();
+  }
+
   private static createErrorMessage(
     text: string,
     status?: number,
@@ -31,7 +43,52 @@ export class MockWorkoutApi {
     };
   }
 
-  private static sortWorkoutsByDateDesc(a: OutputWorkOutDto, b: OutputWorkOutDto): number {
+  private static generateCategories(): CategoryListDto {
+    const categoryList = workOutTypes.map(({ categoryName, icon, id, colorLight, colorMain }) => ({
+      id,
+      name: categoryName,
+      iconNameString: icon,
+      colorMain,
+      colorLight
+    }));
+    return {
+      categories: categoryList,
+    };
+  }
+
+  private static generateSummaryWorkout(days: number): SummaryWorkoutDto {
+    const { categories } = MockWorkoutApi.generateCategories();
+    const workoutDetails = categories.map((category) => ({
+      categoryId: category.id,
+      sumCategoryNumber: lodash.random(1, days),
+      sumCategoryTime: lodash.random(20, 40) * days,
+    }));
+    const { sumNumber, sumTime } =
+      MockWorkoutApi.getSumCategory(workoutDetails);
+    return {
+      sumWorkoutsTime: sumTime,
+      sumWorkoutsNumber: sumNumber,
+      workoutDetails,
+    };
+  }
+
+  private static getSumCategory(workoutDetails: SummaryCategoryDto[]): {
+    sumNumber: number;
+    sumTime: number;
+  } {
+    let sumNumber = 0;
+    let sumTime = 0;
+    workoutDetails.forEach((workout) => {
+      sumNumber += workout.sumCategoryNumber;
+      sumTime += workout.sumCategoryTime;
+    });
+    return { sumNumber, sumTime };
+  }
+
+  private static sortWorkoutsByDateDesc(
+    a: OutputWorkOutDto,
+    b: OutputWorkOutDto,
+  ): number {
     const dateA = new Date(a.date).getTime();
     const dateB = new Date(b.date).getTime();
     return dateB - dateA;
@@ -46,18 +103,19 @@ export class MockWorkoutApi {
   static generateRandomWorkoutList(
     workoutsNumber: number,
   ): OutputWorkOutListDto {
-    const workoutArray =
-      [...Array(workoutsNumber)].map(() => {
-        return this.generateRandomWorkout();
-      });
-    const sortedWorkoutArray = [...workoutArray].sort(this.sortWorkoutsByDateDesc);
+    const workoutArray = [...Array(workoutsNumber)].map(() => {
+      return this.generateRandomWorkout();
+    });
+    const sortedWorkoutArray = [...workoutArray].sort(
+      this.sortWorkoutsByDateDesc,
+    );
     return {
       items: sortedWorkoutArray,
     };
   }
 
   private static generateRandomWorkout(): OutputWorkOutDto {
-    return ({
+    return {
       id: Math.random() * 1000000,
       time: lodash.random(5, 300),
       score: 2,
@@ -68,8 +126,14 @@ export class MockWorkoutApi {
         workOutTypes.map((category) => category.categoryName),
       )[0],
       date: formatISO(
-        new Date(2022, lodash.random(0, 4), lodash.random(1, 28), lodash.random(0, 12), lodash.random(0, 59)),
+        new Date(
+          2022,
+          lodash.random(0, 4),
+          lodash.random(1, 28),
+          lodash.random(0, 12),
+          lodash.random(0, 59),
+        ),
       ),
-    });
+    };
   }
 }
