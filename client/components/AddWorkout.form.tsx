@@ -61,6 +61,11 @@ export const AddWorkoutForm = ({ defaultValues }: AddWorkoutFormProps) => {
     }
   };
 
+  const clearNotifications = () => {
+    setBackendError('');
+    setDidCorrectlySent(false);
+  }
+
   return (
     <>
       <FormControl
@@ -68,7 +73,7 @@ export const AddWorkoutForm = ({ defaultValues }: AddWorkoutFormProps) => {
         onSubmit={handleSubmit(onSubmit)}
         sx={{ margin: '2rem auto' }}
         fullWidth
-        onFocus={() => setBackendError('')}
+        onFocus={clearNotifications}
       >
         <FormElementWrapper>
           <Controller
