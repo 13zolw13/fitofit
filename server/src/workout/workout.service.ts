@@ -3,6 +3,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Workout } from '../db/workout.entity';
 import { InputWorkOutDto } from '../dto/inputWorkOutDto';
 import { Repository } from 'typeorm/repository/Repository';
+import {
+  Between,
+  LessThan,
+  LessThanOrEqual,
+  MoreThan,
+  MoreThanOrEqual,
+} from 'typeorm';
 
 @Injectable()
 export class WorkoutService {
@@ -24,7 +31,26 @@ export class WorkoutService {
     });
   }
 
-  findTodayWorkouts(thisDayFormat: string) {
-    return this.workoutRepository.find({ where: { date: thisDayFormat } });
+  findTodayWorkouts(): Promise<Workout[]> {
+    const convertDateToISoMin = returnTodayMin();
+    const convertDateToISoMax = returnTodayMax();
+    console.log(convertDateToISoMax);
+    return this.workoutRepository.find({
+      date: Between(convertDateToISoMin, convertDateToISoMax),
+    });
+
+    function returnTodayMin() {
+      const today = new Date().setDate(new Date().getDate());
+      const convertDate = new Date(today).toISOString().slice(0, 10);
+      const convertDateToISo = new Date(convertDate).toISOString();
+      return convertDateToISo;
+    }
+
+    function returnTodayMax() {
+      const today = new Date().setDate(new Date().getDate() + 1);
+      const convertDate = new Date(today).toISOString().slice(0, 10);
+      const convertDateToISo = new Date(convertDate).toISOString();
+      return convertDateToISo;
+    }
   }
 }

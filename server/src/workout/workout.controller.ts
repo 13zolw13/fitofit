@@ -18,10 +18,7 @@ export class WorkOutController {
   @Get('/today')
   async getTodayWorkouts() {
     try {
-      console.log('getTodayWorkouts');
-      const thisDayFormat = new Date().toISOString().slice(0, 10);
-      console.log(thisDayFormat);
-      return this.workoutService.findTodayWorkouts(thisDayFormat);
+      return await this.workoutService.findTodayWorkouts();
     } catch (error: any) {
       return { text: 'Something went wrong', status: error.status };
     }
