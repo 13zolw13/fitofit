@@ -33,12 +33,7 @@ export class WorkOutController {
   @Post()
   async addWorkout(@Body(new ValidationPipe()) workout: InputWorkOutDto) {
     try {
-      return this.workoutService.addWorkout({
-        categoryWorkOut: workout.categoryWorkOut,
-        difficulty: workout.difficulty,
-        time: workout.time,
-        date: workout.date,
-      });
+      return this.workoutService.addWorkout(workout);
     } catch (error) {
       return { text: 'Something went wrong', status: error.status };
     }

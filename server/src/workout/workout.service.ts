@@ -3,13 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Workout } from '../db/workout.entity';
 import { InputWorkOutDto } from '../dto/inputWorkOutDto';
 import { Repository } from 'typeorm/repository/Repository';
-import {
-  Between,
-  LessThan,
-  LessThanOrEqual,
-  MoreThan,
-  MoreThanOrEqual,
-} from 'typeorm';
+import { Between } from 'typeorm';
+import { returnTodayMax, returnTodayMin } from 'utilities/returnLimDay';
 
 @Injectable()
 export class WorkoutService {
@@ -42,19 +37,5 @@ export class WorkoutService {
     return this.workoutRepository.find({
       date: Between(convertDateToISoMin, convertDateToISoMax),
     });
-
-    function returnTodayMin() {
-      const today = new Date().setDate(new Date().getDate());
-      const convertDate = new Date(today).toISOString().slice(0, 10);
-      const convertDateToISo = new Date(convertDate).toISOString();
-      return convertDateToISo;
-    }
-
-    function returnTodayMax() {
-      const today = new Date().setDate(new Date().getDate() + 1);
-      const convertDate = new Date(today).toISOString().slice(0, 10);
-      const convertDateToISo = new Date(convertDate).toISOString();
-      return convertDateToISo;
-    }
   }
 }
