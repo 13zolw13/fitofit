@@ -11,3 +11,12 @@ export function returnTodayMax(): string {
   const convertDateToISo = new Date(convertDate).toISOString();
   return convertDateToISo;
 }
+
+export function returnDate(Query: string): string {
+  const dateSevenDaysAgo = new Date().setDate(
+    new Date().getDate() - Number(Query),
+  );
+  const convertDate = new Date(dateSevenDaysAgo).toISOString().slice(0, 10);
+  const convertDateToISo = new Date(convertDate).toISOString();
+  return convertDateToISo;
+}

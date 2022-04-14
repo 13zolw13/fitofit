@@ -24,6 +24,16 @@ export class WorkOutController {
       return { text: 'Something went wrong', status: error.status };
     }
   }
+  @ApiOperation({ summary: 'Get last workouts' })
+  @Get('/last')
+  async lastWorkouts(@Query('days') days: string) {
+    try {
+      return this.workoutService.findLastWorkouts(days);
+    } catch (error: any) {
+      return { text: 'Something went wrong', status: error.status };
+    }
+  }
+
   @ApiOperation({ summary: 'Get todays workout' })
   @ApiResponse({ status: 200, description: 'List of workout from today' })
   @Get('/today')

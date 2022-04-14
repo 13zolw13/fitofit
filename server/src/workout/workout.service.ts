@@ -3,16 +3,23 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Workout } from '../db/workout.entity';
 import { InputWorkOutDto } from '../dto/inputWorkOutDto';
 import { Repository } from 'typeorm/repository/Repository';
-import { Between } from 'typeorm';
-import { returnTodayMax, returnTodayMin } from 'utilities/returnLimDay';
+import { Between, MoreThanOrEqual } from 'typeorm';
+import {
+  returnDate,
+  returnTodayMax,
+  returnTodayMin,
+} from 'utilities/returnLimDay';
 import { OutputWorkOutListDto } from 'src/dto/OutputWorkOutListDto';
 import { returnMapping } from '../../utilities/returnMapping';
 
 @Injectable()
 export class WorkoutService {
-  findLastWorkouts(Query: string) {
-    if (Query === '7days') {
-    }
+  async findLastWorkouts(Query: string) {
+    const date = returnDate(Query);
+    const data = await this.workoutRepository.find({
+      date: MoreThanOrEqual(date),
+    });
+    return returnMapping(data);
   }
   constructor(
     @InjectRepository(Workout)
