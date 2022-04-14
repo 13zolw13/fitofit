@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Workout } from './workout.entity';
-import { InputWorkOutDto } from '../../dto/inputWorkOutDto';
 import { Repository } from 'typeorm/repository/Repository';
+import { InputWorkOutDto } from '../../dto/inputWorkOutDto';
 
 @Injectable()
 export class WorkoutService {

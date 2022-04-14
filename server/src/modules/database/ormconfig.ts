@@ -12,33 +12,17 @@ export const ormConfigurations = (
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: isTest ? process.env.POSTGRES_TEST : process.env.POSTGRES_DB,
-
-    // entities: [isTest ? 'src/**/*.entity.ts' : 'dist/**/*.entity.js'],
-    // entities: [Workout],
-    synchronize: true,
-    // migrationsRun: true,
-    // migrations: ['./src/**/migrations/*.ts'],
-    // migrationsTableName: 'migrations',
-
-    // cli: {
-    //   migrationsDir: './src/migrations',
-    // },
+    synchronize: false,
     name: 'test',
-
     schema: 'public',
-
-    migrationsRun: true,
-
-    // logging: process.env.DATABASE_LOGGING === 'true',
-
+    // migrationsRun: true,
     // autoLoadEntities: true,
-
-    entities: ['./src/**/*.entity.ts'], // tests run on TS directly
+    entities: [isTest ? './src/**/*.entity.ts' : './dist/**/*.entity.js'], // tests run on TS directly
     migrations: ['./packages/backend/src/**/migrations/*.ts'],
     migrationsTableName: 'migrations',
 
     cli: {
-      migrationsDir: './packages/backend/src/migrations',
+      migrationsDir: './src/migrations',
     },
   };
 };
